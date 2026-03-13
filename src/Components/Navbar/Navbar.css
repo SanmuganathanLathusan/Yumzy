@@ -1,0 +1,114 @@
+.navbar {
+    padding: 20px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.navbar .logo {
+    width: 140px;
+    cursor: pointer;
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    color: #494c5f;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.navbar-menu a {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar-menu a:hover {
+    color: #ff6b6b;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.navbar-right img {
+    cursor: pointer;
+    width: 24px;
+    transition: transform 0.2s ease;
+}
+
+.navbar-right img:hover {
+    transform: scale(1.1);
+}
+
+.navbar button {
+    border-radius: 50px;
+    background: transparent;
+    color: #4d5985;
+    border: 1.5px solid #ff6b6b;
+    padding: 10px 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.navbar button:hover {
+    background-color: #ff6b6b;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.navbar .active {
+    padding-bottom: 2px;
+    color: #ff6b6b;
+    border-bottom: 2px solid #ff6b6b;
+}
+
+.navbar-search-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-search-icon .dot {
+    position: absolute;
+    min-height: 8px;
+    min-width: 8px;
+    background-color: #ff6b6b;
+    border-radius: 50%;
+    top: -5px;
+    right: -5px;
+    border: 2px solid white;
+}
+
+@media (max-width: 1050px) {
+    .navbar .logo {
+        width: 120px;
+    }
+    .navbar-menu {
+        gap: 20px;
+        font-size: 16px;
+    }
+    .navbar-right {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 750px) {
+    .navbar-menu {
+        display: none;
+    }
+}

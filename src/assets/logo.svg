@@ -1,0 +1,13 @@
+<svg width="160" height="50" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800&amp;display=swap');
+    .text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 42px;
+      font-weight: 800;
+      fill: #ff6b6b;
+      letter-spacing: -1.5px;
+    }
+  </style>
+  <text x="0" y="40" class="text">Yumzy.</text>
+</svg>
