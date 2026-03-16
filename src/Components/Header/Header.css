@@ -37,19 +37,43 @@
 
 }
 @media (max-width:1050px) {
-   
     .header-contents{
         max-width: 45%;
     }
 }
+
 @media (max-width:750px) {
+    .header {
+        height: 50vw;
+        min-height: 220px;
+    }
     .header-contents{
-        max-width:65%;
+        max-width: 70%;
+        gap: 2vw;
     }
     .header-contents p{
         display: none;
     }
     .header-contents button{
-        padding: 2vw 4vw;
+        padding: 2vw 5vw;
+        font-size: max(1.5vw, 13px);
+    }
+}
+
+@media (max-width:480px) {
+    .header {
+        height: 60vw;
+        min-height: 240px;
+    }
+    .header-contents {
+        max-width: 80%;
+        bottom: 12%;
+    }
+    .header-contents h2 {
+        font-size: max(5vw, 18px);
+    }
+    .header-contents button {
+        padding: 3vw 6vw;
+        font-size: 13px;
     }
 }

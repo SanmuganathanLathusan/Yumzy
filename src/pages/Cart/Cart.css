@@ -1,5 +1,5 @@
 .cart {
-    margin-top: 100px;
+    margin-top: 60px;
 }
 
 .cart-items-title {
@@ -29,7 +29,7 @@
     cursor: pointer;
 }
 
-.cart-buttom{
+.cart-buttom {
     margin-top: 80px;
     display: flex;
     justify-content: space-between;
@@ -39,9 +39,8 @@
 .cart-total {
     flex: 1;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     gap: 20px;
-
 }
 
 .cart-total-details {
@@ -54,7 +53,6 @@
     margin: 10px 0px;
 }
 
-
 .cart-total button {
     border: none;
     color: white;
@@ -65,42 +63,72 @@
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
 .cart-total button:hover {
     background-color: #ff5252;
 }
-.cart-promocode{
-    color: #555;
 
+.cart-promocode {
+    color: #555;
 }
-.cart-promocode-input{
+
+.cart-promocode-input {
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #eaeaea;
     border-radius: 4px;
-
 }
-.cart-promocode-input input{
+
+.cart-promocode-input input {
     background: transparent;
     border: none;
     outline: none;
     padding-left: 10px;
+    flex: 1;
+    min-width: 0;
 }
-.cart-promocode-input button{
-width: max(10vw,150px);
-padding: 12px 5px;
-background-color: black;
-border: none;
-color: white;
-border-radius: 4px;
+
+.cart-promocode-input button {
+    width: max(10vw, 130px);
+    padding: 12px 5px;
+    background-color: black;
+    border: none;
+    color: white;
+    border-radius: 4px;
 }
-@media  (max-width:750px) {
-    .cart-buttom{
-        flex-direction: column-reverse;
+
+/* cart table horizontal scroll on small screens */
+.cart-items-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 750px) {
+    .cart {
+        margin-top: 30px;
     }
-    .cart-promocode{
+    .cart-buttom {
+        flex-direction: column-reverse;
+        margin-top: 40px;
+    }
+    .cart-promocode {
         justify-content: start;
     }
-    
+    .cart-items-title, .cart-items-item {
+        min-width: 480px;
+    }
+    .cart-total button {
+        width: 100%;
+    }
+    .cart-promocode-input button {
+        width: max(25vw, 110px);
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-items-title {
+        font-size: 11px;
+    }
 }

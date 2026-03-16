@@ -9,7 +9,7 @@
 }
 body{
   min-height: 100vh;
-
+  overflow-x: hidden;
 }
 a{
   text-decoration: none;
@@ -19,6 +19,18 @@ a{
   width: 80%;
   margin: auto;
   max-width: 1400px;
+}
+
+@media (max-width: 750px) {
+  .app {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    width: 95%;
+  }
 }
 @keyframes fadeIn {
   0%{
