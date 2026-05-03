@@ -27,14 +27,22 @@
     font-size: 1vw;
 }
 .header-contents button{
-    bottom: none;
-    color: #747474;
+    border: none;
+    color: var(--text-dark);
     font-weight: 500;
     padding: 1vw 2.3vw;
     background-color: white;
     font-size: max(1vw,13px);
-    border-radius: 50px;
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
+.header-contents button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 92, 0, 0.3);
 }
 @media (max-width:1050px) {
     .header-contents{

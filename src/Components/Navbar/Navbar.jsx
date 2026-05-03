@@ -7,7 +7,8 @@ import { StoreContext } from '../../Context/StoreContext';
 const Navbar = ({ setShowLogin }) => {
     const [menu, setMenu] = useState("home");
     const [mobileOpen, setMobileOpen] = useState(false);
-    const { getTotalCartAmount } = useContext(StoreContext);
+    const [showSearch, setShowSearch] = useState(false);
+    const { getTotalCartAmount, searchQuery, setSearchQuery } = useContext(StoreContext);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -50,7 +51,16 @@ const Navbar = ({ setShowLogin }) => {
                     <a href='#footer' onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>Contact Us</a>
                 </ul>
                 <div className="navbar-right">
-                    <img src={assets.search_icon} alt="" />
+                    <div className="navbar-search-container">
+                        <img src={assets.search_icon} alt="Search" onClick={() => setShowSearch(!showSearch)} className="search-icon-img" />
+                        <input 
+                            type="text" 
+                            placeholder="Search food..." 
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className={showSearch ? "show" : ""}
+                        />
+                    </div>
                     <div className="navbar-search-icon">
                         <Link to='/cart'><img src={assets.basket_icon} alt="" /></Link>
                         <div className={getTotalCartAmount() == 0 ? "" : "dot"}></div>

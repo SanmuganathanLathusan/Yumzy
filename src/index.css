@@ -1,15 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #FF5C00;
+  --secondary-color: #00A651;
+  --bg-color: #F8F8F8;
+  --text-dark: #121212;
+  --text-light: #666666;
+  --card-radius: 15px;
+  --button-radius: 50px;
+}
 
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: outfit;
+  font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
 }
 body{
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
 }
 a{
   text-decoration: none;
