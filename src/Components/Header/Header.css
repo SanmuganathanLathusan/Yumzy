@@ -1,10 +1,83 @@
 .header{
     height: 34vw;
     margin: 30px auto;
-    background:url('../../assets/header_img.svg') no-repeat;
-    background-size: contain;
+    background-color: #000; /* Fallback color */
     position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
+
+.header-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2));
+    z-index: 1;
+}
+
+.steam-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.infinite-mist {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%; /* Double height for seamless scrolling */
+    background: repeating-linear-gradient(
+        to top,
+        transparent,
+        rgba(255, 255, 255, 0.05) 10%,
+        rgba(255, 255, 255, 0.15) 25%,
+        rgba(255, 255, 255, 0.05) 40%,
+        transparent 50%
+    );
+    background-size: 100% 50%;
+    filter: blur(40px);
+    animation: scrollMist 12s linear infinite;
+}
+
+/* Add a second layer moving at a different speed for organic feel */
+.infinite-mist::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    background-size: 50% 50%;
+    animation: scrollMist 8s linear infinite reverse;
+    opacity: 0.6;
+}
+
+@keyframes scrollMist {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+}
+
 .header-contents{
     position: absolute;
     display: flex;
@@ -14,8 +87,7 @@
     max-width: 50%;
     bottom: 10%;
     left:6vw;
-    animation: fadeIn 3s;
-
+    z-index: 3;
 }
 .header-contents h2{
     font-weight: 500;
