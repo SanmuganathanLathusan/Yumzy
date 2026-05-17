@@ -4,7 +4,7 @@ import { StoreContext } from '../../Context/StoreContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Auth = () => {
-    const { token, setToken } = useContext(StoreContext);
+    const { token, setToken, url } = useContext(StoreContext);
     const navigate = useNavigate();
     const location = useLocation();
     
@@ -41,7 +41,7 @@ const Auth = () => {
       }
 
       try {
-        const response = await fetch(newUrl, {
+        const response = await fetch(url + newUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

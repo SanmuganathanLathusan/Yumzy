@@ -5,7 +5,7 @@ import { StoreContext } from '../../Context/StoreContext'
 import { useNavigate } from 'react-router-dom'
 
 const LoginPopup = ({setShowLogin}) => {
-    const { setToken } = useContext(StoreContext)
+    const { setToken, url } = useContext(StoreContext)
     const navigate = useNavigate()
     const [currState,setCurrState]=useState("Login")
     const [data, setData] = useState({
@@ -31,7 +31,7 @@ const LoginPopup = ({setShowLogin}) => {
       }
 
       try {
-        const response = await fetch(newUrl, {
+        const response = await fetch(url + newUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

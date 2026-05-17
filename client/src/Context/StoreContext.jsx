@@ -4,6 +4,7 @@ import { food_list } from "../assets/assets";
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
+const url = import.meta.env.VITE_BACKEND_URL || "";
 const [cartItems,setCartItems]=useState({});
 const [searchQuery, setSearchQuery] = useState("");
 const addToCart = async (itemId) => {
@@ -15,7 +16,7 @@ const addToCart = async (itemId) => {
   }
   if (token) {
     try {
-      await fetch('/api/cart/add', {
+      await fetch(url + '/api/cart/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,7 +37,7 @@ const removeFromeCart = async (itemId) => {
   if (token) {
     try {
       const newQuantity = currentQuantity - 1;
-      await fetch('/api/cart/update', {
+      await fetch(url + '/api/cart/update', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -66,7 +67,7 @@ return totalAmount;
 
   const loadCartData = async (token) => {
     try {
-      const response = await fetch('/api/cart', {
+      const response = await fetch(url + '/api/cart', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
@@ -107,7 +108,8 @@ return totalAmount;
     searchQuery,
     setSearchQuery,
     token,
-    setToken
+    setToken,
+    url
   }
 
   return (

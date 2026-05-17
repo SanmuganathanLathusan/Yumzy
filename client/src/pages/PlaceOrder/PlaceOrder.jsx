@@ -4,7 +4,7 @@ import './PlaceOrder.css'
 import { StoreContext } from '../../Context/StoreContext'
 
 const PlaceOrder = () => {
-    const {getTotalCartAmount, token, setCartItems} = useContext(StoreContext);
+    const {getTotalCartAmount, token, setCartItems, url} = useContext(StoreContext);
     const navigate = useNavigate();
     const [data, setData] = useState({
         firstName: "",
@@ -40,7 +40,7 @@ const PlaceOrder = () => {
         };
 
         try {
-            const response = await fetch('/api/orders', {
+            const response = await fetch(url + '/api/orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -4,7 +4,7 @@ import { StoreContext } from '../../Context/StoreContext';
 import { useNavigate, Link } from 'react-router-dom';
 
 const Dashboard = () => {
-    const { token, setToken } = useContext(StoreContext);
+    const { token, setToken, url } = useContext(StoreContext);
     const [user, setUser] = useState(null);
     const [orders, setOrders] = useState([]);
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Dashboard = () => {
 
         const fetchProfile = async () => {
             try {
-                const response = await fetch('/api/auth/profile', {
+                const response = await fetch(url + '/api/auth/profile', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const data = await response.json();
@@ -35,7 +35,7 @@ const Dashboard = () => {
 
         const fetchOrders = async () => {
             try {
-                const response = await fetch('/api/orders', {
+                const response = await fetch(url + '/api/orders', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const data = await response.json();
@@ -49,7 +49,7 @@ const Dashboard = () => {
 
         fetchProfile();
         fetchOrders();
-    }, [token, navigate, setToken]);
+    }, [token, navigate, setToken, url]);
 
     if (!user) return <div className="dashboard"><div className="dashboard-header"><h1>Loading...</h1></div></div>;
 
