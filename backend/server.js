@@ -32,7 +32,8 @@ app.use(cors({
 }));
 
 // Set static folder for uploads
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+const uploadDir = process.env.NODE_ENV === 'production' ? '/tmp/uploads' : path.join(__dirname, 'uploads');
+app.use('/uploads', express.static(uploadDir));
 
 // Route files
 const authRoutes = require('./routes/authRoutes');
