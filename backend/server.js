@@ -51,6 +51,10 @@ app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/admin', adminRoutes);
 
+app.get('/', (req, res) => {
+  res.send('Yumzy API is running on Vercel!');
+});
+
 // Error Handler Middleware
 const { errorHandler } = require('./middleware/errorMiddleware');
 app.use(errorHandler);
