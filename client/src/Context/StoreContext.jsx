@@ -4,7 +4,7 @@ import { food_list } from "../assets/assets";
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-const url = import.meta.env.VITE_BACKEND_URL || "";
+const url = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "";
 const [cartItems,setCartItems]=useState({});
 const [searchQuery, setSearchQuery] = useState("");
 const addToCart = async (itemId) => {
