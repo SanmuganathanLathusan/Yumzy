@@ -1,5 +1,6 @@
 const Order = require('../models/Order');
 const Cart = require('../models/Cart');
+const foodPricing = require('../utils/foodPricing');
 
 // @desc    Create new order
 // @route   POST /api/orders
@@ -8,8 +9,8 @@ exports.createOrder = async (req, res, next) => {
   try {
     const { paymentMethod, deliveryAddress } = req.body;
 
-    // Get user cart
-    const cart = await Cart.findOne({ user: req.user.id }).populate('items.food');
+    // Get user cart (no need to populate food since it's a String now)
+    const cart = await Cart.findOne({ user: req.user.id });
     
     if (!cart || cart.items.length === 0) {
       return res.status(400).json({ success: false, error: 'No items in cart' });
@@ -18,11 +19,11 @@ exports.createOrder = async (req, res, next) => {
     // Calculate total price and prepare order items
     let totalPrice = 0;
     const orderItems = cart.items.map(item => {
-      const price = item.food.price;
+      const price = foodPricing[item.food] || 0;
       totalPrice += price * item.quantity;
       
       return {
-        food: item.food._id,
+        food: item.food,
         quantity: item.quantity,
         price: price
       };
@@ -55,7 +56,7 @@ exports.createOrder = async (req, res, next) => {
 // @access  Private
 exports.getOrders = async (req, res, next) => {
   try {
-    const orders = await Order.find({ user: req.user.id }).populate('items.food', 'title image price');
+    const orders = await Order.find({ user: req.user.id });
 
     res.status(200).json({
       success: true,
@@ -72,7 +73,7 @@ exports.getOrders = async (req, res, next) => {
 // @access  Private/Admin
 exports.getAllOrders = async (req, res, next) => {
   try {
-    const orders = await Order.find().populate('user', 'name email').populate('items.food', 'title');
+    const orders = await Order.find().populate('user', 'name email');
 
     res.status(200).json({
       success: true,

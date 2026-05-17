@@ -6,10 +6,7 @@ const Food = require('../models/Food');
 // @access  Private
 exports.getCart = async (req, res, next) => {
   try {
-    let cart = await Cart.findOne({ user: req.user.id }).populate({
-      path: 'items.food',
-      select: 'title price image restaurant'
-    });
+    let cart = await Cart.findOne({ user: req.user.id });
 
     if (!cart) {
       cart = await Cart.create({ user: req.user.id, items: [] });
@@ -31,11 +28,6 @@ exports.addToCart = async (req, res, next) => {
   try {
     const { foodId, quantity } = req.body;
 
-    const food = await Food.findById(foodId);
-    if (!food) {
-      return res.status(404).json({ success: false, error: 'Food not found' });
-    }
-
     let cart = await Cart.findOne({ user: req.user.id });
 
     if (!cart) {
@@ -45,7 +37,7 @@ exports.addToCart = async (req, res, next) => {
       });
     } else {
       // Check if food exists in cart
-      const itemIndex = cart.items.findIndex(p => p.food.toString() === foodId);
+      const itemIndex = cart.items.findIndex(p => p.food === String(foodId));
 
       if (itemIndex > -1) {
         // Update quantity
@@ -56,12 +48,6 @@ exports.addToCart = async (req, res, next) => {
       }
       cart = await cart.save();
     }
-
-    // Populate food info
-    await cart.populate({
-      path: 'items.food',
-      select: 'title price image restaurant'
-    });
 
     res.status(200).json({
       success: true,
@@ -80,7 +66,6 @@ exports.updateCartItem = async (req, res, next) => {
     const { foodId, quantity } = req.body;
 
     if (quantity < 1) {
-      // Logic to remove item or return error
       return exports.removeFromCart(req, res, next);
     }
 
@@ -89,15 +74,10 @@ exports.updateCartItem = async (req, res, next) => {
       return res.status(404).json({ success: false, error: 'Cart not found' });
     }
 
-    const itemIndex = cart.items.findIndex(p => p.food.toString() === foodId);
+    const itemIndex = cart.items.findIndex(p => p.food === String(foodId));
     if (itemIndex > -1) {
       cart.items[itemIndex].quantity = quantity;
       await cart.save();
-      
-      await cart.populate({
-        path: 'items.food',
-        select: 'title price image restaurant'
-      });
       
       res.status(200).json({ success: true, data: cart });
     } else {
@@ -120,13 +100,8 @@ exports.removeFromCart = async (req, res, next) => {
       return res.status(404).json({ success: false, error: 'Cart not found' });
     }
 
-    cart.items = cart.items.filter(item => item.food.toString() !== foodId);
+    cart.items = cart.items.filter(item => item.food !== String(foodId));
     await cart.save();
-    
-    await cart.populate({
-      path: 'items.food',
-      select: 'title price image restaurant'
-    });
 
     res.status(200).json({
       success: true,
