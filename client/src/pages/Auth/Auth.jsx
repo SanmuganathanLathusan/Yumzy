@@ -77,7 +77,7 @@ const Auth = () => {
         }
       } catch (error) {
         console.error("Error during authentication", error);
-        alert("An error occurred during authentication.");
+        alert(`Authentication Failed: ${error.message}\n\nPlease check:\n1. Your local backend is running (if using localhost)\n2. The server URL in client/.env is correct\n3. The backend database is successfully connected`);
       }
     };
 
