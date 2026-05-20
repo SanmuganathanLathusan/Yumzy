@@ -19,18 +19,16 @@ const Navbar = () => {
 
             const scrollPos = window.scrollY + 200;
 
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
+            if (window.location.pathname === '/contact') {
                 setMenu("contact-us");
                 return;
             }
 
-            if (footer && scrollPos >= footer.offsetTop) {
-                setMenu("contact-us");
-            } else if (appDownload && scrollPos >= appDownload.offsetTop) {
+            if (appDownload && scrollPos >= appDownload.offsetTop) {
                 setMenu("mobile-app");
             } else if (exploreMenu && scrollPos >= exploreMenu.offsetTop) {
                 setMenu("menu");
-            } else {
+            } else if (window.location.pathname === '/') {
                 setMenu("home");
             }
         };
@@ -69,7 +67,7 @@ const Navbar = () => {
                     <Link to='/' onClick={() => { setMenu("home"); window.scrollTo(0, 0) }} className={menu === "home" ? "active" : ""}>Home</Link>
                     <a href='#explore-menu' onClick={(e) => handleNavClick(e, "menu", "explore-menu")} className={menu === "menu" ? "active" : ""}>Menu</a>
                     <a href='#app-download' onClick={(e) => handleNavClick(e, "mobile-app", "app-download")} className={menu === "mobile-app" ? "active" : ""}>Mobile App</a>
-                    <a href='#footer' onClick={(e) => handleNavClick(e, "contact-us", "footer")} className={menu === "contact-us" ? "active" : ""}>Contact Us</a>
+                    <Link to='/contact' onClick={() => { setMenu("contact-us"); window.scrollTo(0, 0); }} className={menu === "contact-us" ? "active" : ""}>Contact Us</Link>
                 </ul>
                 <div className="navbar-right">
                     <div className="navbar-search-container">
@@ -88,7 +86,7 @@ const Navbar = () => {
                     </div>
                     {token ? (
                         <div style={{display: 'flex', gap: '15px', alignItems: 'center'}}>
-                            <Link to='/dashboard' style={{color: '#ff4c24', fontWeight: 'bold', textDecoration: 'none'}}>Dashboard</Link>
+                            <Link to='/dashboard' style={{color: 'white', fontWeight: 'bold', textDecoration: 'none'}}>Dashboard</Link>
                             <button onClick={() => { localStorage.removeItem('token'); window.location.reload(); }}>Logout</button>
                         </div>
                     ) : (
@@ -108,7 +106,7 @@ const Navbar = () => {
                 <Link to='/' onClick={() => { setMenu("home"); window.scrollTo(0, 0); closeMenu(); }} className={menu === "home" ? "active" : ""}>Home</Link>
                 <a href='#explore-menu' onClick={(e) => handleNavClick(e, "menu", "explore-menu")} className={menu === "menu" ? "active" : ""}>Menu</a>
                 <a href='#app-download' onClick={(e) => handleNavClick(e, "mobile-app", "app-download")} className={menu === "mobile-app" ? "active" : ""}>Mobile App</a>
-                <a href='#footer' onClick={(e) => handleNavClick(e, "contact-us", "footer")} className={menu === "contact-us" ? "active" : ""}>Contact Us</a>
+                <Link to='/contact' onClick={() => { setMenu("contact-us"); window.scrollTo(0, 0); closeMenu(); }} className={menu === "contact-us" ? "active" : ""}>Contact Us</Link>
                 {token ? (
                     <button onClick={() => { navigate('/dashboard'); closeMenu(); }}>Dashboard</button>
                 ) : (

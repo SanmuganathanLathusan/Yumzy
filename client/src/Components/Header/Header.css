@@ -1,11 +1,18 @@
 .header{
-    height: 34vw;
-    margin: 30px auto;
-    background-color: #000; /* Fallback color */
+    height: calc(100vh - 100px);
+    min-height: 550px;
+    width: 100vw;
     position: relative;
-    border-radius: 20px;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: 0px;
+    margin-bottom: 50px;
+    background-color: #000; /* Fallback color */
+    border-radius: 0px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .header-video {
@@ -86,7 +93,7 @@
     gap: 1.5vw;
     max-width: 50%;
     bottom: 10%;
-    left:6vw;
+    left: 5%;
     z-index: 3;
 }
 .header-contents h2{
@@ -96,7 +103,9 @@
 }
 .header-contents p{
     color: white;
-    font-size: 1vw;
+    font-size: max(1.1vw, 15px);
+    line-height: 1.6;
+    margin-bottom: 10px;
 }
 .header-contents button{
     border: none;

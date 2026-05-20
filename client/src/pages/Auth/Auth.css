@@ -8,12 +8,45 @@
 }
 
 .auth-container {
+  display: flex;
   background-color: white;
   width: 100%;
-  max-width: 400px;
+  max-width: 850px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.auth-form-side {
+  flex: 1;
   padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.auth-image-side {
+  flex: 1.1;
+  background: linear-gradient(135deg, #fff0ea 0%, #ffe3d5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  position: relative;
+}
+
+.auth-image-side img {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  object-fit: contain;
+  animation: floatBike 4s ease-in-out infinite;
+}
+
+@keyframes floatBike {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .auth-title {
@@ -94,4 +127,14 @@
 
 .auth-toggle span:hover {
   text-decoration: underline;
+}
+
+/* Hide image on small screens */
+@media (max-width: 768px) {
+  .auth-container {
+    max-width: 420px;
+  }
+  .auth-image-side {
+    display: none;
+  }
 }

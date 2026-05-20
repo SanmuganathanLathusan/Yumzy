@@ -115,3 +115,37 @@ exports.updateOrderStatus = async (req, res, next) => {
     next(error);
   }
 };
+
+// @desc    Cancel an order (User)
+// @route   PUT /api/orders/:id/cancel
+// @access  Private
+exports.cancelOrder = async (req, res, next) => {
+  try {
+    const order = await Order.findById(req.params.id);
+
+    if (!order) {
+      return res.status(404).json({ success: false, error: 'Order not found' });
+    }
+
+    // Make sure the order belongs to the user
+    if (order.user.toString() !== req.user.id) {
+      return res.status(401).json({ success: false, error: 'Not authorized to cancel this order' });
+    }
+
+    // Only allow cancellation if order is pending
+    if (order.orderStatus !== 'pending') {
+      return res.status(400).json({ success: false, error: `Cannot cancel order since it is already ${order.orderStatus}` });
+    }
+
+    order.orderStatus = 'cancelled';
+    await order.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'Order cancelled successfully',
+      data: order
+    });
+  } catch (error) {
+    next(error);
+  }
+};

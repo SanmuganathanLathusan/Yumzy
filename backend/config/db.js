@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
   if (!process.env.MONGO_URI) {
     console.error("CRITICAL ERROR: MONGO_URI is not defined in environment variables.");
-    return;
+    process.exit(1);
   }
 
   // Prevent multiple connections in Vercel serverless environment
@@ -13,15 +13,17 @@ const connectDB = async () => {
   }
 
   try {
-    // Trim any accidental quotes from the env variable
-    const uri = process.env.MONGO_URI.replace(/^["']|["']$/g, '');
-    
-    const conn = await mongoose.connect(uri, {
-      serverSelectionTimeoutMS: 5000 // Fail faster if IP is blocked
+    const conn = await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 30000,
+      socketTimeoutMS: 45000,
+      bufferCommands: true,
+      maxPoolSize: 10,
     });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
-    console.error(`Error connecting to MongoDB: ${error.message}`);
+    console.error(`MongoDB Connection Error: ${error.message}`);
+    console.error("Check: 1) MONGO_URI is correct  2) Your IP is whitelisted in MongoDB Atlas Network Access");
+    process.exit(1);
   }
 };
 

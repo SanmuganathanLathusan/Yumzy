@@ -3,7 +3,8 @@ const {
   createOrder,
   getOrders,
   getAllOrders,
-  updateOrderStatus
+  updateOrderStatus,
+  cancelOrder
 } = require('../controllers/orderController');
 const { protect, authorize } = require('../middleware/authMiddleware');
 
@@ -18,5 +19,7 @@ router.route('/')
 router.get('/all', authorize('admin'), getAllOrders);
 
 router.put('/:id/status', authorize('admin', 'delivery'), updateOrderStatus);
+
+router.put('/:id/cancel', cancelOrder);
 
 module.exports = router;

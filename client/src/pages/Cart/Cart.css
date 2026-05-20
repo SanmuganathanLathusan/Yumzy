@@ -98,15 +98,23 @@
     min-width: 0;
 }
 
-.cart-promocode-input button {
-    width: max(10vw, 130px);
-    padding: 12px 5px;
-    background-color: var(--text-dark);
-    border: none;
-    color: white;
-    border-radius: var(--button-radius);
-    cursor: pointer;
+.promo-label {
     font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.promo-message {
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.promo-success {
+    color: #28a745;
+}
+
+.promo-error {
+    color: #dc3545;
 }
 
 /* cart table horizontal scroll on small screens */
