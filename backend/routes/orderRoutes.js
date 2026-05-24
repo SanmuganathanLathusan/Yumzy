@@ -16,7 +16,7 @@ router.route('/')
   .post(createOrder)
   .get(getOrders); // Returns user's orders
 
-router.get('/all', authorize('admin'), getAllOrders);
+router.get('/all', authorize('admin', 'delivery'), getAllOrders);
 
 router.put('/:id/status', authorize('admin', 'delivery'), updateOrderStatus);
 

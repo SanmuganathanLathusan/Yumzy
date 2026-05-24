@@ -9,13 +9,14 @@ import Cart from './pages/Cart/Cart';
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
 import Dashboard from './pages/Dashboard/Dashboard';
 import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
+import DeliveryDashboard from './pages/DeliveryDashboard/DeliveryDashboard';
 import Auth from './pages/Auth/Auth';
 import Contact from './pages/Contact/Contact';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 
 const App =()=> {
   const location = useLocation();
-  const isDashboardPage = location.pathname === '/dashboard' || location.pathname === '/admin';
+  const isDashboardPage = location.pathname === '/dashboard' || location.pathname === '/admin' || location.pathname === '/delivery';
 
   return (
     <>
@@ -24,6 +25,7 @@ const App =()=> {
       <Routes>
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/admin' element={<AdminDashboard/>}/>
+        <Route path='/delivery' element={<DeliveryDashboard/>}/>
       </Routes>
     ) : (
       <>

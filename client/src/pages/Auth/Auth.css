@@ -24,20 +24,71 @@
 
 .auth-image-side {
   flex: 1.1;
-  background: linear-gradient(135deg, #fff0ea 0%, #ffe3d5 100%);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 40px;
   position: relative;
+  transition: background 0.5s ease;
 }
 
-.auth-image-side img {
+/* Role-based gradient themes */
+.gradient-customer {
+  background: linear-gradient(135deg, #fff0ea 0%, #ffe3d5 100%);
+}
+
+.gradient-delivery {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+}
+
+.gradient-admin {
+  background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+}
+
+.auth-image-label {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.auth-role-badge {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 30px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.badge-customer {
+  background: rgba(255, 92, 0, 0.12);
+  color: #ff5c00;
+  border: 1.5px solid rgba(255, 92, 0, 0.25);
+}
+
+.badge-delivery {
+  background: rgba(46, 196, 182, 0.12);
+  color: #1b9e94;
+  border: 1.5px solid rgba(46, 196, 182, 0.3);
+}
+
+.badge-admin {
+  background: rgba(63, 81, 181, 0.1);
+  color: #3f51b5;
+  border: 1.5px solid rgba(63, 81, 181, 0.2);
+}
+
+.auth-role-img {
   width: 100%;
   max-width: 380px;
   height: auto;
   object-fit: contain;
   animation: floatBike 4s ease-in-out infinite;
+  transition: opacity 0.3s ease;
 }
 
 @keyframes floatBike {
@@ -179,4 +230,61 @@
     padding: 11px;
     font-size: 14px;
   }
+}
+
+.role-selector-container {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.role-selector-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.role-tabs {
+  display: flex;
+  background-color: #f7f9fc;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  gap: 4px;
+}
+
+.role-tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 10px 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.role-tab-btn.active {
+  background-color: white;
+  color: #ff4c24;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.role-tab-btn:hover:not(.active) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.role-icon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.2px;
 }

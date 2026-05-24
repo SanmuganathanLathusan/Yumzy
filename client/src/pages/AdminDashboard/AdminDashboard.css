@@ -102,3 +102,27 @@ select {
   border-radius: 4px;
   outline: none;
 }
+
+.role-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.role-customer {
+  background-color: rgba(0, 166, 81, 0.1);
+  color: #00a651;
+}
+
+.role-admin {
+  background-color: rgba(255, 76, 36, 0.1);
+  color: #ff4c24;
+}
+
+.role-delivery {
+  background-color: rgba(255, 159, 28, 0.1);
+  color: #ff9f1c;
+}

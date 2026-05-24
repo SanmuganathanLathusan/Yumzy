@@ -11,6 +11,12 @@ const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('stats');
     const navigate = useNavigate();
 
+    const formatUserAddress = (address) => {
+        if (!address) return '—';
+        const parts = [address.street, address.city, address.state, address.zipCode, address.country].filter(Boolean);
+        return parts.length > 0 ? parts.join(', ') : '—';
+    };
+
     useEffect(() => {
         if (!token) {
             navigate('/');
@@ -180,6 +186,8 @@ const AdminDashboard = () => {
                                     <tr>
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Address</th>
                                         <th>Role</th>
                                         <th>Joined</th>
                                     </tr>
@@ -187,9 +195,17 @@ const AdminDashboard = () => {
                                 <tbody>
                                     {users.map((user) => (
                                         <tr key={user._id}>
-                                            <td>{user.name}</td>
+                                            <td style={{ fontWeight: '600' }}>{user.name}</td>
                                             <td>{user.email}</td>
-                                            <td>{user.role}</td>
+                                            <td>{user.phone || '—'}</td>
+                                            <td style={{ maxWidth: '220px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={formatUserAddress(user.address)}>
+                                                {formatUserAddress(user.address)}
+                                            </td>
+                                            <td>
+                                                <span className={`role-badge role-${user.role}`}>
+                                                    {user.role}
+                                                </span>
+                                            </td>
                                             <td>{new Date(user.createdAt).toLocaleDateString()}</td>
                                         </tr>
                                     ))}
