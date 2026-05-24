@@ -13,7 +13,11 @@ exports.errorHandler = (err, req, res, next) => {
 
   // Mongoose duplicate key
   if (err.code === 11000) {
-    const message = 'Duplicate field value entered';
+    let message = 'Duplicate field value entered';
+    if (err.keyValue) {
+      const field = Object.keys(err.keyValue)[0];
+      message = `An account with this ${field} already exists. Please use a different ${field} or log in.`;
+    }
     error = { message, statusCode: 400 };
   }
 

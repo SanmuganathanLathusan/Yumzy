@@ -228,28 +228,49 @@ const Dashboard = () => {
             {/* Stats Row */}
             <div className="stats-row">
                 <div className="stat-card">
-                    <span className="stat-icon">📦</span>
+                    <div className="stat-icon orders-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="svg-stat-icon">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                            <line x1="12" y1="22.08" x2="12" y2="12" />
+                        </svg>
+                    </div>
                     <div>
                         <h3>{orders.length}</h3>
                         <p>Total Orders</p>
                     </div>
                 </div>
                 <div className="stat-card">
-                    <span className="stat-icon">✅</span>
+                    <div className="stat-icon delivered-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="svg-stat-icon">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                            <path d="M8 12.5l2.5 2.5 5.5-5.5" />
+                        </svg>
+                    </div>
                     <div>
                         <h3>{orders.filter(o => o.orderStatus === 'delivered').length}</h3>
                         <p>Delivered</p>
                     </div>
                 </div>
                 <div className="stat-card">
-                    <span className="stat-icon">⏳</span>
+                    <div className="stat-icon progress-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="svg-stat-icon">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                    </div>
                     <div>
                         <h3>{orders.filter(o => o.orderStatus === 'pending' || o.orderStatus === 'preparing').length}</h3>
                         <p>In Progress</p>
                     </div>
                 </div>
                 <div className="stat-card">
-                    <span className="stat-icon">💰</span>
+                    <div className="stat-icon spent-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="svg-stat-icon">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
                     <div>
                         <h3>${orders.reduce((sum, o) => sum + (o.totalPrice || 0), 0).toFixed(2)}</h3>
                         <p>Total Spent</p>

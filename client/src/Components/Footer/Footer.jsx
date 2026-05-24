@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="footer-content">
                 <div className="footer-content-left">
                     <img src={assets.logo} alt="" />
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt voluptatibus dolorem voluptatem tempore quia culpa iure in perferendis dolores corrupti consequatur possimus distinctio, commodi ut excepturi. Facere doloribus aspernatur deleniti?</p>
+                    <p>Fast delivery, secure payments, real-time order tracking, and a wide variety of restaurants—all in one place. Yumzy is built to make every food order quick, convenient, and enjoyable.</p>
                     <div className="footer-social-icons">
                         <img src={assets.facebook_icon} alt="" />
                         <img src={assets.twitter_icon} alt="" />

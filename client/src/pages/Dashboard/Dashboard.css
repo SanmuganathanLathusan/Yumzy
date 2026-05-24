@@ -303,8 +303,6 @@
 }
 
 .stat-icon {
-  font-size: 32px;
-  background: #fff5f2;
   width: 56px;
   height: 56px;
   border-radius: 14px;
@@ -312,6 +310,52 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.stat-icon.orders-icon {
+  background: rgba(255, 76, 36, 0.1);
+  color: #ff4c24;
+}
+
+.stat-icon.delivered-icon {
+  background: rgba(46, 196, 182, 0.12);
+  color: #2ec4b6;
+}
+
+.stat-icon.progress-icon {
+  background: rgba(255, 159, 28, 0.12);
+  color: #ff9f1c;
+}
+
+.stat-icon.spent-icon {
+  background: rgba(76, 201, 240, 0.12);
+  color: #4cc9f0;
+}
+
+.svg-stat-icon {
+  width: 26px;
+  height: 26px;
+  stroke-width: 2.2px;
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover .stat-icon {
+  transform: scale(1.05);
+}
+
+.stat-card:hover .svg-stat-icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* Pulsing spinning hand effect for In Progress icon on hover */
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.stat-card:hover .progress-icon .svg-stat-icon {
+  animation: spin-slow 8s linear infinite;
 }
 
 .stat-card h3 {
