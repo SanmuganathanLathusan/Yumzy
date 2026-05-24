@@ -85,7 +85,8 @@
     margin-left: 10px;
 }
 
-.navbar button, 
+/* Styled buttons (Sign In, Logout) — but NOT the hamburger icon */
+.navbar button:not(.navbar-hamburger), 
 .navbar-mobile-menu button:not(.navbar-mobile-close) {
     border-radius: var(--button-radius);
     background: white;
@@ -99,12 +100,43 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.navbar button:hover,
+.navbar button:not(.navbar-hamburger):hover,
 .navbar-mobile-menu button:not(.navbar-mobile-close):hover {
     background-color: #f0f0f0;
     color: var(--primary-color);
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Hamburger: pure icon — no white background, no border */
+.navbar-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px 6px;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 8px;
+    z-index: 200;
+    transition: background 0.2s ease;
+}
+
+.navbar-hamburger:hover {
+    background: rgba(255,255,255,0.15) !important;
+    transform: none;
+}
+
+.navbar-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2.5px;
+    background-color: white;
+    border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
 .navbar .active {
@@ -222,20 +254,68 @@
     .navbar-hamburger {
         display: flex;
     }
-    .navbar button {
-        padding: 8px 16px;
+    /* Auth buttons: black on mobile so they stand out on the orange navbar */
+    .navbar-right > button:not(.navbar-hamburger) {
+        display: inline-flex !important;
+        background: #1a1a1a;
+        color: white;
+        padding: 7px 14px;
         font-size: 13px;
+        border-radius: var(--button-radius);
+        box-shadow: none;
+        white-space: nowrap;
+    }
+    .navbar-right > button:not(.navbar-hamburger):hover {
+        background: #333;
+        transform: none;
+    }
+    /* Dashboard + Logout wrapper: black buttons */
+    .navbar-right > div:not(.navbar-search-container):not(.navbar-search-icon) {
+        display: flex;
+    }
+    .navbar-right > div:not(.navbar-search-container):not(.navbar-search-icon) button {
+        background: #1a1a1a;
+        color: white;
+        padding: 7px 14px;
+        font-size: 13px;
+        box-shadow: none;
+    }
+    .navbar-right > div:not(.navbar-search-container):not(.navbar-search-icon) a {
+        color: white;
+        font-size: 13px;
+        font-weight: 600;
+        background: #1a1a1a;
+        padding: 7px 12px;
+        border-radius: var(--button-radius);
     }
     .navbar-right {
-        gap: 16px;
+        gap: 10px;
     }
     .navbar-right img {
         width: 20px;
     }
+    .navbar-search-container input.show {
+        width: 100px;
+    }
 }
 
 @media (max-width: 480px) {
+    .navbar {
+        height: 70px;
+        padding: 0 3%;
+    }
     .navbar .logo {
+        width: 85px;
+    }
+    .navbar-right {
+        gap: 12px;
+    }
+    .navbar-search-container input.show {
         width: 100px;
+        font-size: 13px;
+    }
+    .navbar-search-icon {
+        height: 20px;
+        width: 20px;
     }
 }

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import './Navbar.css'
 import { assets } from '../../assets/assets'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { StoreContext } from '../../Context/StoreContext';
 
 const Navbar = () => {
@@ -10,6 +10,26 @@ const Navbar = () => {
     const [showSearch, setShowSearch] = useState(false);
     const { getTotalCartAmount, searchQuery, setSearchQuery, token } = useContext(StoreContext);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleSearchChange = (e) => {
+        const value = e.target.value;
+        setSearchQuery(value);
+        if (value) {
+            setShowSearch(true); // keep bar visible while typing
+            // If not on home page, navigate home so food results are visible
+            if (location.pathname !== '/') {
+                navigate('/');
+                // Home page will handle the scroll via its own useEffect
+            } else {
+                const el = document.getElementById('food-display');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            // Query cleared — hide bar
+            setShowSearch(false);
+        }
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -76,8 +96,8 @@ const Navbar = () => {
                             type="text" 
                             placeholder="Search food..." 
                             value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className={showSearch ? "show" : ""}
+                            onChange={handleSearchChange}
+                            className={showSearch || searchQuery ? "show" : ""}
                         />
                     </div>
                     <div className="navbar-search-icon">

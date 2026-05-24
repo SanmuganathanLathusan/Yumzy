@@ -141,18 +141,7 @@ const Contact = () => {
             </div>
 
             {/* Google Map */}
-            <div className="contact-map">
-                <iframe
-                    title="Yumzy Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019284201387!2d-122.39828828470656!3d37.79251847975619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085806283db856b%3A0xc07a93c7847c0b!2sFerry%20Building!5e0!3m2!1sen!2sus!4v1628148000000!5m2!1sen!2sus"
-                    width="100%"
-                    height="450"
-                    style={{ border: 0 }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
-            </div>
+            
         </div>
     );
 };

@@ -1,6 +1,6 @@
-.header{
+.header {
     height: calc(100vh - 100px);
-    min-height: 550px;
+    min-height: 500px;
     width: 100vw;
     position: relative;
     left: 50%;
@@ -9,11 +9,186 @@
     margin-right: -50vw;
     margin-top: 0px;
     margin-bottom: 50px;
-    background-color: #000; /* Fallback color */
+    background-color: #000;
     border-radius: 0px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
+
+.header-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.25));
+    z-index: 1;
+}
+
+.steam-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.infinite-mist {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        to top,
+        transparent,
+        rgba(255, 255, 255, 0.05) 10%,
+        rgba(255, 255, 255, 0.15) 25%,
+        rgba(255, 255, 255, 0.05) 40%,
+        transparent 50%
+    );
+    background-size: 100% 50%;
+    filter: blur(40px);
+    animation: scrollMist 12s linear infinite;
+}
+
+.infinite-mist::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    background-size: 50% 50%;
+    animation: scrollMist 8s linear infinite reverse;
+    opacity: 0.6;
+}
+
+@keyframes scrollMist {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-50%); }
+}
+
+.header-contents {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1.5vw;
+    max-width: 55%;
+    bottom: 10%;
+    left: 5%;
+    z-index: 3;
+}
+
+.header-contents h2 {
+    font-weight: 600;
+    color: white;
+    font-size: max(4vw, 24px);
+    line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.header-contents p {
+    color: rgba(255,255,255,0.9);
+    font-size: max(1.1vw, 14px);
+    line-height: 1.6;
+    margin-bottom: 10px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.header-contents button {
+    border: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    padding: 1vw 2.3vw;
+    background-color: white;
+    font-size: max(1vw, 13px);
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.header-contents button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 92, 0, 0.3);
+}
+
+/* ── Tablet (≤ 1050px) ── */
+@media (max-width: 1050px) {
+    .header-contents {
+        max-width: 65%;
+    }
+}
+
+/* ── Small tablet (≤ 750px) ── */
+@media (max-width: 750px) {
+    .header {
+        height: 65vw;
+        min-height: 300px;
+    }
+    .header-contents {
+        max-width: 80%;
+        gap: 12px;
+        bottom: 8%;
+    }
+    .header-contents h2 {
+        font-size: max(5vw, 20px);
+    }
+    .header-contents p {
+        font-size: 13px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .header-contents button {
+        padding: 10px 22px;
+        font-size: 13px;
+    }
+}
+
+/* ── Mobile (≤ 480px) ── */
+@media (max-width: 480px) {
+    .header {
+        height: 72vw;
+        min-height: 260px;
+    }
+    .header-contents {
+        max-width: 88%;
+        gap: 10px;
+        bottom: 7%;
+    }
+    .header-contents h2 {
+        font-size: max(5.5vw, 18px);
+    }
+    .header-contents p {
+        font-size: 12px;
+        -webkit-line-clamp: 2;
+    }
+    .header-contents button {
+        padding: 9px 18px;
+        font-size: 12px;
+    }
+}
+
 
 .header-video {
     position: absolute;
